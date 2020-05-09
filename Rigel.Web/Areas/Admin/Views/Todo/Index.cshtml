@@ -1,0 +1,46 @@
+﻿@model Todo
+
+@{
+    ViewData["Title"] = "Todos";
+}
+@section Styles{
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/datatables/css/dataTables.bootstrap4.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/datatables/css/buttons.dataTables.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/app.css" asp-append-version="true" />
+}
+
+@Html.AntiForgeryToken()
+
+
+<div class="card-body">
+    <div class="input-group mb-3">
+        <input type="text" id="txtExternalSearch" class="form-control" placeholder="Dış Arama" aria-label="External Search" aria-describedby="btnExternalSearch">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="btnExternalSearch">Ara</button>
+        </div>
+    </div>
+
+    <jquery-datatables id="todoTable"
+                       class="table table-sm table-light table-bordered table-hover"
+                       model="@Model"
+                       thead-class="text-center"
+                       enable-searching="true"
+                       search-row-th-class="p-0"
+                       search-input-class="form-control form-control-sm"
+                       search-input-style=""
+                       search-input-placeholder-prefix="Search">
+    </jquery-datatables>
+
+    <partial name="_Create" model="@(new Todo())" />
+    <div id="editPartial"></div>
+</div>
+
+
+@section Scripts{
+    <script src="~/lib/momentjs/moment.min.js" asp-append-version="true"></script>
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js" asp-append-version="true"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js" asp-append-version="true"></script>
+    <script src="~/lib/datatables/js/dataTables.buttons.min.js" asp-append-version="true"></script>
+    <script src="~/js/app.js" asp-append-version="true"></script>
+}

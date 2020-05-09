@@ -1,0 +1,2 @@
+﻿[RoutePrefix] : Ön ad
+Constraint : Kısıtlama [Route("{id:int}")] id int geleceğini belirtiyor.

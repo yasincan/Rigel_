@@ -1,0 +1,282 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Projects\\.Net\\Rigel\\Rigel.Business\\Rigel.Business.csproj": {}
+  },
+  "projects": {
+    "D:\\Projects\\.Net\\Rigel\\Rigel.Business\\Rigel.Business.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\.Net\\Rigel\\Rigel.Business\\Rigel.Business.csproj",
+        "projectName": "Rigel.Business",
+        "projectPath": "D:\\Projects\\.Net\\Rigel\\Rigel.Business\\Rigel.Business.csproj",
+        "packagesPath": "C:\\Users\\Yasin\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\.Net\\Rigel\\Rigel.Business\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Yasin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "D:\\Projects\\.Net\\Rigel\\Rigel.Data\\Rigel.Data.csproj": {
+                "projectPath": "D:\\Projects\\.Net\\Rigel\\Rigel.Data\\Rigel.Data.csproj"
+              },
+              "D:\\Projects\\.Net\\Rigel\\Rigel.Services\\Rigel.Services.csproj": {
+                "projectPath": "D:\\Projects\\.Net\\Rigel\\Rigel.Services\\Rigel.Services.csproj"
+              },
+              "D:\\Projects\\.Net\\Rigel\\Rigel.ViewModels\\Rigel.ViewModels.csproj": {
+                "projectPath": "D:\\Projects\\.Net\\Rigel\\Rigel.ViewModels\\Rigel.ViewModels.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "JqueryDataTables.ServerSide.AspNetCoreWeb": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100-preview.1.20155.7\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projects\\.Net\\Rigel\\Rigel.Data\\Rigel.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\.Net\\Rigel\\Rigel.Data\\Rigel.Data.csproj",
+        "projectName": "Rigel.Data",
+        "projectPath": "D:\\Projects\\.Net\\Rigel\\Rigel.Data\\Rigel.Data.csproj",
+        "packagesPath": "C:\\Users\\Yasin\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\.Net\\Rigel\\Rigel.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Yasin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100-preview.1.20155.7\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projects\\.Net\\Rigel\\Rigel.Services\\Rigel.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\.Net\\Rigel\\Rigel.Services\\Rigel.Services.csproj",
+        "projectName": "Rigel.Services",
+        "projectPath": "D:\\Projects\\.Net\\Rigel\\Rigel.Services\\Rigel.Services.csproj",
+        "packagesPath": "C:\\Users\\Yasin\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\.Net\\Rigel\\Rigel.Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Yasin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "D:\\Projects\\.Net\\Rigel\\Rigel.Data\\Rigel.Data.csproj": {
+                "projectPath": "D:\\Projects\\.Net\\Rigel\\Rigel.Data\\Rigel.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[5.6.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100-preview.1.20155.7\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projects\\.Net\\Rigel\\Rigel.ViewModels\\Rigel.ViewModels.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\.Net\\Rigel\\Rigel.ViewModels\\Rigel.ViewModels.csproj",
+        "projectName": "Rigel.ViewModels",
+        "projectPath": "D:\\Projects\\.Net\\Rigel\\Rigel.ViewModels\\Rigel.ViewModels.csproj",
+        "packagesPath": "C:\\Users\\Yasin\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\.Net\\Rigel\\Rigel.ViewModels\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Yasin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "JqueryDataTables.ServerSide.AspNetCoreWeb": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100-preview.1.20155.7\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

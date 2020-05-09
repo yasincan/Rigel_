@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Rigel.Data\Rigel.Data.csproj" />
+    <ProjectReference Include="..\Rigel.Services\Rigel.Services.csproj" />
+    <ProjectReference Include="..\Rigel.ViewModels\Rigel.ViewModels.csproj" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="JqueryDataTables.ServerSide.AspNetCoreWeb" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+  </ItemGroup>
+
+</Project>
