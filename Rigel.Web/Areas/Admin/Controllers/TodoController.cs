@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using JqueryDataTables.ServerSide.AspNetCoreWeb.ActionResults;
-using JqueryDataTables.ServerSide.AspNetCoreWeb.Binders;
 using JqueryDataTables.ServerSide.AspNetCoreWeb.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Rigel.Business.Contracts;
-using Rigel.ViewModels;
+using Rigel.Business.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
@@ -17,7 +16,7 @@ namespace Rigel.Web.Areas.Admin.Controllers
     {
         private readonly ITodoService _todoService;
         private readonly IMapper _mapper;
-        public TodoController(ITodoService TodoManager,IMapper mapper)
+        public TodoController(ITodoService TodoManager, IMapper mapper)
         {
             _mapper = mapper;
             _todoService = TodoManager;
@@ -43,25 +42,25 @@ namespace Rigel.Web.Areas.Admin.Controllers
         //    }
         //}
 
-        
+
         public IActionResult Index()
         {
-            //return View(_mapper.Map<IEnumerable<Todo>>(_todoService.Select()));
-            return View(new ViewModels.Todo());
+            //return View(_mapper.Map<IEnumerable<TodoViewModel>>(_todoService.Select()));
+            return View(new TodoViewModel());
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoadTable([FromBody]JqueryDataTablesParameters param)
+        public async Task<IActionResult> LoadTable([FromBody] JqueryDataTablesParameters param)
         {
             try
             {
                 HttpContext.Session.SetString(nameof(JqueryDataTablesParameters), JsonSerializer.Serialize(param));
-                var results = await _todoService.GetDataAsync(param);
+                var results = await _todoService.GetDataTableAsync(param);
 
-                return new JsonResult(new JqueryDataTablesResult<ViewModels.Todo>
+                return new JsonResult(new JqueryDataTablesResult<TodoViewModel>
                 {
                     Draw = param.Draw,
-                    Data = results.Items,
+                    Data = _mapper.Map<List<TodoViewModel>>(results.Items),
                     RecordsFiltered = results.TotalSize,
                     RecordsTotal = results.TotalSize
                 });
@@ -76,15 +75,14 @@ namespace Rigel.Web.Areas.Admin.Controllers
         public async Task<IActionResult> GetExcel()
         {
             var param = HttpContext.Session.GetString(nameof(JqueryDataTablesParameters));
-
-            var results = await _todoService.GetDataAsync(JsonSerializer.Deserialize<JqueryDataTablesParameters>(param));
-            return new JqueryDataTablesExcelResult<Todo>(_mapper.Map<List<Todo>>(results.Items), "Todo", "TodoExcel");
+            var results = await _todoService.GetDataTableAsync(JsonSerializer.Deserialize<JqueryDataTablesParameters>(param));
+            return new JqueryDataTablesExcelResult<TodoViewModel>(_mapper.Map<List<TodoViewModel>>(results.Items), "Todo", "TodoExcel");
         }
 
         [HttpGet]
-        public IActionResult Details(Guid id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            return View(_mapper.Map<Todo>(_todoService.FindById(id)));
+            return View(_mapper.Map<TodoViewModel>(await _todoService.GetByIdAsync(id)));
         }
 
         [HttpGet]
@@ -95,47 +93,45 @@ namespace Rigel.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Todo Todo)
+        public async Task<IActionResult> Create(TodoViewModel Todo)
         {
             if (ModelState.IsValid)
             {
-                Todo.Id = Guid.NewGuid();
-                _todoService.Insert(_mapper.Map<Data.Entities.Todo>(Todo));
+                await _todoService.AddAsync(_mapper.Map<Data.RigelDB.Concretes.Entities.Todo>(Todo));
                 return RedirectToAction("Index");
             }
-
             return View(Todo);
         }
 
         [HttpGet]
-        public IActionResult Edit(Guid id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            return PartialView("_Edit", _mapper.Map<Todo>(_todoService.FindById(id)));
+            return PartialView("_Edit", _mapper.Map<TodoViewModel>(await _todoService.GetByIdAsync(id)));
         }
 
         [HttpPut]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Todo Todo)
+        public async Task<IActionResult> Edit(TodoViewModel Todo)
         {
             if (ModelState.IsValid)
             {
-                _todoService.Update(_mapper.Map<Data.Entities.Todo>(Todo));
+               await _todoService.UpdateAsync(_mapper.Map<Data.RigelDB.Concretes.Entities.Todo>(Todo));
                 return RedirectToAction("Index");
             }
             return NoContent();
         }
 
         [HttpGet]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            return View(_mapper.Map<Todo>(_todoService.FindById(id)));
+            return View(_mapper.Map<TodoViewModel>(await _todoService.GetByIdAsync(id)));
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(Guid id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            _todoService.Delete(_mapper.Map<Data.Entities.Todo>(_todoService.FindById(id)));
+            await _todoService.DeleteAsync(_mapper.Map<Data.RigelDB.Concretes.Entities.Todo>(await _todoService.GetByIdAsync(id)));
             return RedirectToAction("Index");
         }
     }

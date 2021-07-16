@@ -1,18 +1,18 @@
-﻿using System;
+﻿using JqueryDataTables.ServerSide.AspNetCoreWeb.Models;
+using Rigel.Data.RigelDB.Concretes.Entities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using JqueryDataTables.ServerSide.AspNetCoreWeb.Models;
-using Rigel.Data.Entities;
 
 namespace Rigel.Business.Contracts
 {
     public interface ITodoService
     {
-        Task<JqueryDataTablesPagedResults<ViewModels.Todo>> GetDataAsync(JqueryDataTablesParameters table);
-        Todo FindById(Guid id);
-        IEnumerable<Todo> Select();
-        Todo Insert(Todo todo);
-        bool Update(Todo todo);
-        bool Delete(Todo todo);
+        Task<JqueryDataTablesPagedResults<Todo>> GetDataTableAsync(JqueryDataTablesParameters table);
+        Task<Todo> GetByIdAsync(Guid id);
+        Task<Todo> AddAsync(Todo todo);
+        Task<bool> UpdateAsync(Todo todo);
+        Task<bool> DeleteAsync(Todo todo);
+        Task<IEnumerable<Todo>> GetAllAsNoTrackingAsync();
     }
 }

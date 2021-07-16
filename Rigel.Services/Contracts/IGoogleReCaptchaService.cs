@@ -6,6 +6,6 @@ namespace Rigel.Services.Contracts
 {
     public interface IGoogleReCaptchaService: IDisposable
     {
-        bool IsReCaptchaValidate(string responseKey);
+        bool IsReCaptchaValidate(string responseKey, string appSettingSectionKey);
     }
 }

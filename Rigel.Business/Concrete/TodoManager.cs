@@ -4,9 +4,10 @@ using JqueryDataTables.ServerSide.AspNetCoreWeb.Infrastructure;
 using JqueryDataTables.ServerSide.AspNetCoreWeb.Models;
 using Microsoft.EntityFrameworkCore;
 using Rigel.Business.Contracts;
-using Rigel.Data.Contexts;
-using Rigel.Data.Contracts;
-using Rigel.Data.Entities;
+using Rigel.Business.Models.ViewModels;
+using Rigel.Data.RigelDB.Concretes.Context;
+using Rigel.Data.RigelDB.Concretes.Entities;
+using Rigel.Data.RigelDB.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,58 +18,52 @@ namespace Rigel.Business.Concrete
     public class TodoManager : ITodoService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly RigelContext _context;
-        private readonly IConfigurationProvider _mappingConfiguration;
-        public TodoManager(IUnitOfWork unitOfWork, RigelContext context, IConfigurationProvider mappingConfiguration)
+        private readonly IMapper _mapper;
+        public TodoManager(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _context = context;
             _unitOfWork = unitOfWork;
-            _mappingConfiguration = mappingConfiguration;
+            _mapper = mapper;
         }
-        public bool Delete(Todo todo)
+        public async Task<bool> DeleteAsync(Todo todo)
         {
             todo.DeletedDate = DateTime.Now;
-            _unitOfWork.Repository<Todo>().Delete(todo);
-            return _unitOfWork.SaveChanges() > 0;
+            _unitOfWork.Repository<Todo>().DeleteAsync(todo);
+            return await _unitOfWork.SaveChangesAsync() > 0;
         }
 
-        public Todo FindById(Guid id)
+        public async Task<Todo> GetByIdAsync(Guid id)
         {
-            return _unitOfWork.Repository<Todo>().FindById(id);
+            return await _unitOfWork.Repository<Todo>().FindByIdAsyn(id);
         }
 
-        public Todo Insert(Todo todo)
+        public async Task<Todo> AddAsync(Todo todo)
         {
+            todo.Id = Guid.NewGuid();
             todo.CreatedDate = DateTime.Now;
-            _unitOfWork.Repository<Todo>().Insert(todo);
-            _unitOfWork.SaveChanges();
+            todo = await _unitOfWork.Repository<Todo>().InsertAsync(todo);
+            await _unitOfWork.SaveChangesAsync();
             return todo;
         }
 
-        public IEnumerable<Todo> Select()
+        public async Task<IEnumerable<Todo>> GetAllAsNoTrackingAsync()
         {
-            return _unitOfWork.Repository<Todo>().Select().Where(c => c.DeletedDate == null).OrderByDescending(c => c.CreatedDate);
+            return await _unitOfWork.Repository<Todo>().Query(c => c.DeletedDate == null).OrderByDescending(c => c.CreatedDate).AsNoTracking().ToListAsync();
         }
 
-        public IEnumerable<Todo> ListTodo()
-        {
-            return _unitOfWork.Repository<Todo>().Select();
-        }
-
-        public bool Update(Todo todo)
+        public async Task<bool> UpdateAsync(Todo todo)
         {
             todo.UpdatedDate = DateTime.Now;
-            _unitOfWork.Repository<Todo>().Update(todo);
-            return _unitOfWork.SaveChanges() > 0;
+            _unitOfWork.Repository<Todo>().UpdateAsync(todo);
+            return await _unitOfWork.SaveChangesAsync() > 0;
         }
 
-        public async Task<JqueryDataTablesPagedResults<ViewModels.Todo>> GetDataAsync(JqueryDataTablesParameters table)
+        public async Task<JqueryDataTablesPagedResults<Todo>> GetDataTableAsync(JqueryDataTablesParameters table)
         {
-            ViewModels.Todo[] items = null;
-            IQueryable<Todo> query = _context.Todos.Where(d => d.DeletedDate == null).OrderByDescending(d => d.CreatedDate).AsNoTracking();
+            Todo[] items = null;
+            IQueryable<Todo> query = _unitOfWork.Repository<Todo>().Query(d => d.DeletedDate == null).OrderByDescending(d => d.CreatedDate).AsNoTracking();
 
-            query = SearchOptionsProcessor<ViewModels.Todo, Todo>.Apply(query, table.Columns);
-            query = SortOptionsProcessor<ViewModels.Todo, Todo>.Apply(query, table);
+            query = SearchOptionsProcessor<Todo, Todo>.Apply(query, table.Columns);
+            query = SortOptionsProcessor<Todo, Todo>.Apply(query, table);
 
             var size = await query.CountAsync();
 
@@ -77,17 +72,17 @@ namespace Rigel.Business.Concrete
                 items = await query
                 .Skip((table.Start / table.Length) * table.Length)
                 .Take(table.Length)
-                .ProjectTo<ViewModels.Todo>(_mappingConfiguration)
+                .ProjectTo<Todo>(_mapper.ConfigurationProvider)
                 .ToArrayAsync();
             }
             else
             {
                 items = await query
-                .ProjectTo<ViewModels.Todo>(_mappingConfiguration)
+                .ProjectTo<Todo>(_mapper.ConfigurationProvider)
                 .ToArrayAsync();
             }
 
-            return new JqueryDataTablesPagedResults<ViewModels.Todo>
+            return new JqueryDataTablesPagedResults<Todo>
             {
                 Items = items,
                 TotalSize = size

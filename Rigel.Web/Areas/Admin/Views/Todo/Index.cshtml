@@ -1,4 +1,4 @@
-﻿@model Todo
+﻿@model TodoViewModel
 
 @{
     ViewData["Title"] = "Todos";
@@ -32,7 +32,7 @@
                        search-input-placeholder-prefix="Search">
     </jquery-datatables>
 
-    <partial name="_Create" model="@(new Todo())" />
+    <partial name="_Create" model="@(new TodoViewModel())" />
     <div id="editPartial"></div>
 </div>
 

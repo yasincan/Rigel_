@@ -1,16 +1,17 @@
-﻿using Rigel.Data.Contracts;
+﻿using Rigel.Data.RigelDB.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Rigel.Business.Contracts
 {
-    public interface IBaseService<T> where T : class, IEntityBase
+    public interface IBaseService<T> where T : class, IBaseEntity
     {
-        T FindById(Guid entityId);
-        IEnumerable<T> Select();
-        T Insert(T entity);
-        bool Update(T entity);
-        bool Delete(T entity);
+        Task<T> GetById(Guid entityId);
+        Task<IEnumerable<T>> GetAllAsync();
+        Task<T> AddAsync(T entity);
+        Task<bool> UpdateAsync(T entity);
+        Task<bool> DeleteAsync(T entity);
     }
 }

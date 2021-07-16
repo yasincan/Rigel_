@@ -1,13 +1,13 @@
-﻿@model IEnumerable<Category>
+﻿@model IEnumerable<CategoryViewModel>
 
 @{
-    ViewData["Title"] = "Categories";
+    ViewData["Title"] = "Kategoriler";
 }
 
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New Category</a>
+    <a asp-controller="Category" asp-action="Create">Yeni Kategory Ekle</a>
 </p>
 <table class="table">
     <thead>

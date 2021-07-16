@@ -1,28 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Rigel.Services.Contracts;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Routing;
+using Rigel.Services.Contracts;
 
 namespace Rigel.Business.Attributes
 {
     public class ValidateGoogleReCaptcha : ActionFilterAttribute
     {
+        private readonly string _appSettingSectionKey;
+        public ValidateGoogleReCaptcha(string appSettingSectionKey)
+        {
+            _appSettingSectionKey = appSettingSectionKey;
+        }
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             var _googleReCaptcha = context.HttpContext.RequestServices.GetService<IGoogleReCaptchaService>();
             var captchaResponseKey = context.HttpContext.Request.Form["g-recaptcha-response"];
 
-            bool isCaptchaValidate = _googleReCaptcha.IsReCaptchaValidate(captchaResponseKey);
+            bool isCaptchaValidate = _googleReCaptcha.IsReCaptchaValidate(captchaResponseKey, _appSettingSectionKey);
 
-            //var routeValues = new RouteValueDictionary
-            //    {
-            //        { "controller","Account"},
-            //        { "action","Login"},
-            //        { "areas","Admin"}
-            //    };
             if (!isCaptchaValidate)
                 context.ModelState.AddModelError("Captcha", "Doğrulama hatalıdır.");
         }

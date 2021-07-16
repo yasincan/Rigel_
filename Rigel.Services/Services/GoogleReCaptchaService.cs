@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using Rigel.Services.Contracts;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Net;
 
 namespace Rigel.Services.Services
@@ -15,7 +16,7 @@ namespace Rigel.Services.Services
             _options = options;
         }
         private readonly string apiUrl = "https://www.google.com/recaptcha/api/siteverify";
-        public bool IsReCaptchaValidate(string responseKey)
+        public bool IsReCaptchaValidate(string responseKey, string appSettingSectionKey)
         {
             if (string.IsNullOrWhiteSpace(responseKey))
             {
@@ -24,7 +25,7 @@ namespace Rigel.Services.Services
 
             using var client = new WebClient();
             client.Headers.Add("Content-Type", "application/json; charset=utf-8");
-            var result = client.DownloadString($"{apiUrl}?secret={_options.Value.SecretKey}&response={responseKey}");
+            var result = client.DownloadString($"{apiUrl}?secret={_options.Value.SecretKey[appSettingSectionKey]}&response={responseKey}");
             return ParseValidationResult(result);
 
         }
@@ -33,11 +34,10 @@ namespace Rigel.Services.Services
         {
             GC.SuppressFinalize(this);
         }
-
     }
 
     public class GoogleReCaptchaSettings
     {
-        public string SecretKey { get; set; }
+        public Dictionary<string, string> SecretKey { get; set; }
     }
 }

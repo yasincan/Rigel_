@@ -202,7 +202,7 @@ $(() => {
             .on('click', '.btnDelete', function () {
                 const id = $(this).attr('data-key');
 
-                if (confirm('Are you sure?')) {
+                if (confirm('Silmek istediginizden emin misiniz?')) {
                     fetch(`/Admin/Todo/Delete/${id}`,
                         {
                             method: 'DELETE',

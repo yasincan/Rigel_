@@ -1,9 +1,6 @@
 ﻿using Rigel.Business.Contracts;
-using Rigel.Data.Contracts;
-using Rigel.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Rigel.Data.RigelDB.Concretes.Entities;
+using Rigel.Data.RigelDB.Contracts;
 
 namespace Rigel.Business.Concrete
 {

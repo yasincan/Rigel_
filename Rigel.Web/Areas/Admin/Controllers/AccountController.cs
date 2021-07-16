@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Rigel.Business.Attributes;
-using Rigel.ViewModels;
+using Rigel.Business.Models.ViewModels;
 
 namespace Rigel.Web.Areas.Admin.Controllers
 {
+   [Area("Admin")]
     public class AccountController : Controller
     {
         [HttpGet]
@@ -17,38 +14,14 @@ namespace Rigel.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [ValidateGoogleReCaptcha]
-        public IActionResult Login(User user)
+        [ValidateGoogleReCaptcha("LoginFormKey")]
+        public IActionResult Login(LoginViewModel model)
         {
-            var usr = new User
-            {
-                Id = Guid.NewGuid(),
-                CreatedDate = DateTime.Now,
-                IsActive = true,
-                Password = "11",
-                Todoes = new List<Todo>
-                {
-                    new Todo {
-                    Id = Guid.NewGuid(),
-                    TodoName="yasi",
-                    CreatedDate = DateTime.Now,
-                    IsActive = true
-                    }
-                },
-                UserName = "yasin.can",
-                DeletedDate=DateTime.Now,
-                UpdatedDate=DateTime.Now
-                
-            };
-
             if (ModelState.IsValid)
             {
-                var x = 15;
+              
             }
-
-
             return View();
-
         }
     }
 }
