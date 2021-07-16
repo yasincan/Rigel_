@@ -1,0 +1,7 @@
+D:\Projects\.Net\Rigel\Rigel.Web\obj\Debug\net5.0\Rigel.Web.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\.Net\Rigel\Rigel.Web\obj\Debug\net5.0\Rigel.Web.AssemblyInfoInputs.cache
+D:\Projects\.Net\Rigel\Rigel.Web\obj\Debug\net5.0\Rigel.Web.AssemblyInfo.cs
+D:\Projects\.Net\Rigel\Rigel.Web\obj\Debug\net5.0\Rigel.Web.csproj.CoreCompileInputs.cache
+D:\Projects\.Net\Rigel\Rigel.Web\obj\Debug\net5.0\Rigel.Web.MvcApplicationPartsAssemblyInfo.cache
+D:\Projects\.Net\Rigel\Rigel.Web\obj\Debug\net5.0\Rigel.Web.RazorAssemblyInfo.cache
+D:\Projects\.Net\Rigel\Rigel.Web\obj\Debug\net5.0\Rigel.Web.RazorAssemblyInfo.cs

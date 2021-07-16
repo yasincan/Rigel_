@@ -1,0 +1,5 @@
+D:\Projects\.Net\Rigel\Rigel.Data\obj\Debug\net5.0\Rigel.Data.csproj.AssemblyReference.cache
+D:\Projects\.Net\Rigel\Rigel.Data\obj\Debug\net5.0\Rigel.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\.Net\Rigel\Rigel.Data\obj\Debug\net5.0\Rigel.Data.AssemblyInfoInputs.cache
+D:\Projects\.Net\Rigel\Rigel.Data\obj\Debug\net5.0\Rigel.Data.AssemblyInfo.cs
+D:\Projects\.Net\Rigel\Rigel.Data\obj\Debug\net5.0\Rigel.Data.csproj.CoreCompileInputs.cache
