@@ -32,7 +32,6 @@ namespace Rigel.Data.RigelDB.Concretes.Repositories
                         CreatedDate=DateTime.Now,
                         Description="",
                         TodoName="test",
-                        U
                     });
                     _context.SaveChanges();
                     await _context.SaveChangesAsync();

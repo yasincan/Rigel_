@@ -1,5 +1,14 @@
-D:\Projects\.Net\Rigel\Rigel.Data\obj\Debug\net5.0\Rigel.Data.csproj.AssemblyReference.cache
+D:\Projects\.Net\Rigel\Rigel.Data\bin\Debug\net5.0\Rigel.Data.deps.json
+D:\Projects\.Net\Rigel\Rigel.Data\bin\Debug\net5.0\Rigel.Data.runtimeconfig.json
+D:\Projects\.Net\Rigel\Rigel.Data\bin\Debug\net5.0\Rigel.Data.runtimeconfig.dev.json
+D:\Projects\.Net\Rigel\Rigel.Data\bin\Debug\net5.0\Rigel.Data.dll
+D:\Projects\.Net\Rigel\Rigel.Data\bin\Debug\net5.0\ref\Rigel.Data.dll
+D:\Projects\.Net\Rigel\Rigel.Data\bin\Debug\net5.0\Rigel.Data.pdb
 D:\Projects\.Net\Rigel\Rigel.Data\obj\Debug\net5.0\Rigel.Data.GeneratedMSBuildEditorConfig.editorconfig
 D:\Projects\.Net\Rigel\Rigel.Data\obj\Debug\net5.0\Rigel.Data.AssemblyInfoInputs.cache
 D:\Projects\.Net\Rigel\Rigel.Data\obj\Debug\net5.0\Rigel.Data.AssemblyInfo.cs
 D:\Projects\.Net\Rigel\Rigel.Data\obj\Debug\net5.0\Rigel.Data.csproj.CoreCompileInputs.cache
+D:\Projects\.Net\Rigel\Rigel.Data\obj\Debug\net5.0\Rigel.Data.dll
+D:\Projects\.Net\Rigel\Rigel.Data\obj\Debug\net5.0\ref\Rigel.Data.dll
+D:\Projects\.Net\Rigel\Rigel.Data\obj\Debug\net5.0\Rigel.Data.pdb
+D:\Projects\.Net\Rigel\Rigel.Data\obj\Debug\net5.0\Rigel.Data.genruntimeconfig.cache
