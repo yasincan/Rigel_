@@ -14,9 +14,10 @@ namespace Rigel.Data.RigelDB.Concretes.Repositories
         {
             _context = context;
         }
-        public IRepository<T> Repository<T>() where T : BaseEntity, new()
+
+        public IBaseRepository<T> Repository<T>() where T : BaseEntity, new()
         {
-            return new EFRepository<T>(_context);
+            return new EFBaseRepository<T, RigelContext>(_context);
         }
 
         public async Task<int> SaveChangesAsync()
@@ -26,20 +27,11 @@ namespace Rigel.Data.RigelDB.Concretes.Repositories
             {
                 try
                 {
-                    _context.Todos.Add(new Todo
-                    {
-                        Id = Guid.NewGuid(),
-                        CreatedDate=DateTime.Now,
-                        Description="",
-                        TodoName="test",
-                    });
-                    _context.SaveChanges();
                     await _context.SaveChangesAsync();
                     await dbContextTransaction.CommitAsync();
                 }
-                catch (Exception ex)
+                catch(Exception ex)
                 {
-                    //Log tutmak uygun olur
                     result = 0;
                     await dbContextTransaction.RollbackAsync();
                 }
@@ -47,10 +39,10 @@ namespace Rigel.Data.RigelDB.Concretes.Repositories
             return result;
         }
 
-        private bool disposed = false;
+        private bool _disposed = false;
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposed)
+            if (!_disposed)
             {
                 if (disposing)
                 {
@@ -58,7 +50,7 @@ namespace Rigel.Data.RigelDB.Concretes.Repositories
                 }
             }
 
-            disposed = true;
+            _disposed = true;
         }
         public void Dispose()
         {

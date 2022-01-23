@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Rigel.Business.Contracts;
+﻿using Rigel.Business.Contracts;
 using Rigel.Data.RigelDB.Concretes.Entities;
 using Rigel.Data.RigelDB.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Rigel.Business.Concrete
@@ -16,6 +15,16 @@ namespace Rigel.Business.Concrete
         {
             _unitOfWork = unitOfWork;
         }
+
+        public virtual async Task<T> AddAsync(T entity)
+        {
+            entity.Id = Guid.NewGuid();
+            entity.CreatedDate = DateTime.Now;
+            entity = await _unitOfWork.Repository<T>().AddAsync(entity);
+            await _unitOfWork.SaveChangesAsync();
+            return entity;
+        }
+
         public virtual async Task<bool> DeleteAsync(T entity)
         {
             entity.DeletedDate = DateTime.Now;
@@ -23,28 +32,19 @@ namespace Rigel.Business.Concrete
             return await _unitOfWork.SaveChangesAsync() > 0;
         }
 
-        public virtual async Task<T> GetById(Guid entityId)
+        public virtual async Task<T> FindAsync(Expression<Func<T, bool>> filter = null)
         {
-            return await _unitOfWork.Repository<T>().FindByIdAsyn(entityId);
+            return await _unitOfWork.Repository<T>().FindAsync(filter);
         }
 
-        public virtual async Task<T> AddAsync(T entity)
+        public virtual async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null)
         {
-            entity.Id = Guid.NewGuid();
-            entity.CreatedDate = DateTime.Now;
-            entity = await _unitOfWork.Repository<T>().InsertAsync(entity);
-            await _unitOfWork.SaveChangesAsync();
-            return entity;
-        }
-
-        public virtual async Task<IEnumerable<T>> GetAllAsync()
-        {
-            return await _unitOfWork.Repository<T>().Query(c => c.DeletedDate == null).OrderByDescending(c => c.CreatedDate).ToListAsync();
+            return await _unitOfWork.Repository<T>().GetAllAsync(filter);
         }
 
         public virtual async Task<bool> UpdateAsync(T entity)
         {
-            entity.UpdatedDate = DateTime.Now;
+             entity.UpdatedDate = DateTime.Now;
             _unitOfWork.Repository<T>().UpdateAsync(entity);
             return await _unitOfWork.SaveChangesAsync() > 0;
         }

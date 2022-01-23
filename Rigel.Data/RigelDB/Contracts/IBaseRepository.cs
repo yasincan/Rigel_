@@ -1,17 +1,19 @@
-﻿using Rigel.Data.RigelDB.Contracts;
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Rigel.Business.Contracts
+namespace Rigel.Data.RigelDB.Contracts
 {
-    public interface IBaseService<T> where T : class, IBaseEntity, new()
+    public interface IBaseRepository<T> where T : class, IBaseEntity, new()
     {
+        IQueryable<T> Query();
         Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null);
         Task<T> FindAsync(Expression<Func<T, bool>> filter = null);
         Task<T> AddAsync(T entity);
-        Task<bool> UpdateAsync(T entity);
-        Task<bool> DeleteAsync(T entity);
+        void UpdateAsync(T entity);
+        void DeleteAsync(T entity);
     }
 }

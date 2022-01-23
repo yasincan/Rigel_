@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Rigel.Business.Models.ViewModels;
+using Rigel.Business.Models.Dtos;
 using Rigel.Data.RigelDB.Concretes.Entities;
 
 namespace Rigel.Business.Models.ModelMapper
@@ -8,11 +8,11 @@ namespace Rigel.Business.Models.ModelMapper
     {
         public AutoMapping()
         {
-            CreateMap<Category, CategoryViewModel>();
-            CreateMap<CategoryViewModel, Category>();
+            CreateMap<Category, CategoryDto>();
+            CreateMap<CategoryDto, Category>();
 
-            CreateMap<Todo, TodoViewModel>();
-            CreateMap<TodoViewModel, Todo>();
+            CreateMap<Todo, TodoDto>();
+            CreateMap<TodoDto, Todo>();
 
             CreateMap<Todo,Todo>();
         }

@@ -9,6 +9,10 @@ namespace Rigel.Data.RigelDB.Concretes.Context
             : base(options)
         {
         }
+        public RigelContext()
+        {
+
+        }
         public DbSet<User> Users { get; set; }
         public DbSet<Todo> Todos { get; set; }
         public DbSet<Category> Categories { get; set; }

@@ -14,6 +14,6 @@ namespace Rigel.Data.RigelDB.Concretes.Entities
         public string Description { get; set; }
 
         public int DisplayOrder { get; set; }
-        public IEnumerable<Category> SubCategories { get; set; }
+        public ICollection<Category> SubCategories { get; set; }
     }
 }

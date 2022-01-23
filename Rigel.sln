@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rigel.Web", "Rigel.Web\Rige
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rigel.Data", "Rigel.Data\Rigel.Data.csproj", "{245D5962-82FC-4C63-B6BE-774C2EBA44F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rigel.Services", "Rigel.Services\Rigel.Services.csproj", "{6EB191CD-45AE-45F5-AD69-9E1B20AD1B66}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rigel.Business", "Rigel.Business\Rigel.Business.csproj", "{237E5211-D40A-4476-BA9E-7362A694AC16}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{245D5962-82FC-4C63-B6BE-774C2EBA44F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{245D5962-82FC-4C63-B6BE-774C2EBA44F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{245D5962-82FC-4C63-B6BE-774C2EBA44F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6EB191CD-45AE-45F5-AD69-9E1B20AD1B66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6EB191CD-45AE-45F5-AD69-9E1B20AD1B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6EB191CD-45AE-45F5-AD69-9E1B20AD1B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6EB191CD-45AE-45F5-AD69-9E1B20AD1B66}.Release|Any CPU.Build.0 = Release|Any CPU
 		{237E5211-D40A-4476-BA9E-7362A694AC16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{237E5211-D40A-4476-BA9E-7362A694AC16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{237E5211-D40A-4476-BA9E-7362A694AC16}.Release|Any CPU.ActiveCfg = Release|Any CPU

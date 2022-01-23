@@ -2,9 +2,9 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Rigel.Business.Models.ViewModels
+namespace Rigel.Business.Models.Dtos
 {
-    public class BaseViewModel
+    public class BaseDto
     {
         public Guid Id { get; set; }
 
@@ -20,7 +20,7 @@ namespace Rigel.Business.Models.ViewModels
         public DateTime CreatedDate { get; set; }
 
 
-        [DisplayFormat(DataFormatString = "MM/dd/yyyy HH:mm:ss", NullDisplayText = "Gücellenmemiştir")]
+        [DisplayFormat(DataFormatString = "MM/dd/yyyy HH:mm:ss", NullDisplayText = "Güncellenmemiştir")]
         [Display(Name = "Güncelleme Tarihi")]
         [Sortable]
         public DateTime? UpdatedDate { get; set; }

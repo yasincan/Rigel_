@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Rigel.Business.Contracts;
-using Rigel.Business.Models.ViewModels;
+using Rigel.Business.Models.Dtos;
 using Rigel.Data.RigelDB.Concretes.Entities;
 using System;
 using System.Collections.Generic;
@@ -22,14 +22,14 @@ namespace Rigel.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var categories = await _categoryService.GetAllAsync();
-            var data = _mapper.Map<IEnumerable<CategoryViewModel>>(categories);
+            var data = _mapper.Map<IEnumerable<CategoryDto>>(categories);
             return View(data);
         }
 
         [HttpGet]
         public async Task<IActionResult> Details(Guid id)
         {
-            return View(_mapper.Map<CategoryViewModel>(await _categoryService.GetById(id)));
+            return View(_mapper.Map<CategoryDto>(await _categoryService.FindAsync(x => x.Id == id)));
         }
 
         [HttpGet]
@@ -40,7 +40,7 @@ namespace Rigel.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CategoryViewModel category)
+        public async Task<IActionResult> Create(CategoryDto category)
         {
             if (ModelState.IsValid)
             {
@@ -54,12 +54,12 @@ namespace Rigel.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
-            return View(_mapper.Map<CategoryViewModel>(await _categoryService.GetById(id)));
+            return View(_mapper.Map<CategoryDto>(await _categoryService.FindAsync(x => x.Id == id)));
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(CategoryViewModel category)
+        public async Task<IActionResult> Edit(CategoryDto category)
         {
             if (ModelState.IsValid)
             {
@@ -72,14 +72,14 @@ namespace Rigel.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(Guid id)
         {
-            return View(_mapper.Map<CategoryViewModel>(await _categoryService.GetById(id)));
+            return View(_mapper.Map<CategoryDto>(await _categoryService.FindAsync(x => x.Id == id)));
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            await _categoryService.DeleteAsync(_mapper.Map<Category>(await _categoryService.GetById(id)));
+            await _categoryService.DeleteAsync(_mapper.Map<Category>(await _categoryService.FindAsync(x => x.Id == id)));
             return RedirectToAction("Index");
         }
     }

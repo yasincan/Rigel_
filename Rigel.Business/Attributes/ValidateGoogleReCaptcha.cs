@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
-using Rigel.Services.Contracts;
+using Rigel.Business.Contracts;
 
 namespace Rigel.Business.Attributes
 {

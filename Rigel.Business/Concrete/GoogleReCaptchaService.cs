@@ -1,17 +1,16 @@
 ﻿using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
-using Rigel.Services.Contracts;
+using Rigel.Business.Contracts;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 
-namespace Rigel.Services.Services
+namespace Rigel.Business.Concrete
 {
-    public class GoogleReCaptchaService : IGoogleReCaptchaService
+    public class GoogleReCaptchaManager : IGoogleReCaptchaService
     {
         private readonly IOptions<GoogleReCaptchaSettings> _options;
-        public GoogleReCaptchaService(IOptions<GoogleReCaptchaSettings> options)
+        public GoogleReCaptchaManager(IOptions<GoogleReCaptchaSettings> options)
         {
             _options = options;
         }
@@ -29,7 +28,7 @@ namespace Rigel.Services.Services
             return ParseValidationResult(result);
 
         }
-        private bool ParseValidationResult(string validationResult) => (bool)JObject.Parse(validationResult).SelectToken("success");
+        private static bool ParseValidationResult(string validationResult) => (bool)JObject.Parse(validationResult).SelectToken("success");
         public void Dispose()
         {
             GC.SuppressFinalize(this);
